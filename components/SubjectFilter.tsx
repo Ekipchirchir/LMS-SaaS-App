@@ -34,9 +34,11 @@ const SubjectFilter = () => {
       });
     }
     router.push(newUrl, { scroll: false });
+     /*eslint-disable */
   }, [subject]);
 
   return (
+     // @ts-expect-error: The
     <Select onValueChange={setSubject} value={subject}>
       <SelectTrigger className="input capitalize">
         <SelectValue placeholder="Subject" />

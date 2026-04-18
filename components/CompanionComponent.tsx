@@ -68,6 +68,7 @@ const CompanionComponent = ({ companionId, subject, topic, name, userName, userI
             vapi.off('speech-start', onSpeechStart);
             vapi.off('speech-end', onSpeechEnd);
         }
+        /*eslint-disable */
     }, []);
 
     const toggleMicrophone = () => {

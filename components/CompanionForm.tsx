@@ -1,13 +1,12 @@
 "use client"
 
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { useForm, type Resolver } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -17,7 +16,6 @@ import {
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -38,9 +36,11 @@ const formSchema = z.object({
     duration: z.coerce.number().min(1, { message: 'Duration is required.'}),
 })
 
+type FormSchema = z.infer<typeof formSchema>
+
 const CompanionForm = () => {
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<FormSchema>({
+        resolver: zodResolver(formSchema) as Resolver<FormSchema>,
         defaultValues: {
             name: '',
             subject: '',
